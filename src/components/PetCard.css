@@ -71,6 +71,44 @@
   transform: rotateY(180deg);
 }
 
+.card-front .add-button {
+  z-index: 1;
+  position: fixed;
+  display: fleX;
+  justify-content: center;
+  align-items: center;
+  top: 7px;
+  right: 120px;
+  width: 65px;
+  height: 20px;
+  background: #60c95d;
+  border-radius: 15px;
+  padding: 5px;
+  cursor: pointer;
+}
+  
+
+.card-back .add-button {
+  z-index: 1;
+  position: fixed;
+  display: fleX;
+  justify-content: center;
+  align-items: center;
+  top: 7px;
+  right: 115px;
+  width: 65px;
+  height: 20px;
+  background: #60c95d;
+  border-radius: 15px;
+  padding: 5px;
+  cursor: pointer;
+}
+.add-back:hover {
+    transform: scale(1.2);
+    transition: 1s;
+  }
+
+
 
 
 

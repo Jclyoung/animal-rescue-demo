@@ -35,6 +35,13 @@ function Header() {
           <img src='new-site-icon.png' alt='horse dog cat' className='logo' />
         </Link>
         <div className='header-right'>
+        {routes
+            .filter((r) => r.isPermNav === true )
+            .map((r) => (
+              <Link className='routes' key={r.title} to={r.path}>
+                {r.title}
+              </Link>
+            ))} 
           {routes
             .filter((r) => r.isUser === isLoggedIn && r.isNav )
             .map((r) => (
