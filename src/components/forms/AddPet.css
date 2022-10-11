@@ -1,0 +1,70 @@
+.addPet{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  z-index: 100;
+ justify-content: center;
+ align-items: center;
+}
+
+.addPet input {
+  width: 10rem;
+  border: unset;
+  font-size: 1rem;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  border-bottom: 1.5px solid hsl(210, 10%, 75%);
+  padding: 5px;
+  
+}
+
+input.add-pet-radio{
+  border: unset;
+  font-size: 1rem;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  border-bottom: 1.5px solid hsl(210, 10%, 75%);
+  padding: 5px;
+  width: auto;
+}
+
+.addPet label {
+  padding: 5px;
+}
+
+.addPet input:focus{
+  outline: none;
+}
+
+.addPet button {
+  font-size: 1rem;
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #002403;
+}
+
+.addPet textarea {
+  height: 150px;
+  border-color: hsl(210, 10%, 75%);
+  padding: 5px;
+  font-size: 1rem;
+  width: -webkit-fill-available;
+}
+
+.addPet textarea:focus { 
+  outline: none;
+}
+
+.addPet button:hover {
+  background-color: #002403c9;
+}
+
+.addPet button:active {
+  background-color: #002403dd;
+}

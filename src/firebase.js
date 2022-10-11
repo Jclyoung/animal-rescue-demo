@@ -19,8 +19,7 @@ import {
   onSnapshot,
   orderBy,
   where,
-  Timestamp
-
+  Timestamp,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -30,7 +29,7 @@ const firebaseConfig = {
   storageBucket: "animal-rescue-demo.appspot.com",
   messagingSenderId: "512803051694",
   appId: "1:512803051694:web:65d94fae2be7688dbff53f",
-  measurementId: "G-HKW8Q9DNP6"
+  measurementId: "G-HKW8Q9DNP6",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -45,7 +44,6 @@ const fetchFirebaseUsers = async (uid) => {
     const doc = await getDocs(q);
     const data = doc.docs[0].data();
     return data.displayName;
-
   } catch (err) {
     console.error(err);
     alert("An error occurred while fetching user data");
@@ -111,31 +109,47 @@ const logout = () => {
   signOut(auth);
 };
 
+// var tutorialsRef = firebase.firestore().collection("/tutorials");
+// tutorialsRef.get().then(function(snapshot) {
+//   vat tutorials = [];
+
+//   snapshot.forEach(function(childSnapshot) {
+//     var id = childSnapshot.id;
+//     var data = childSnapshot.val();
+//     // ...
+
+//     tutorials.push({ id: id, title: data.title, description: data.description});
+//   });
+// });
 const getPets = async () => {
-  const q = query(collection(db, 'pets'), orderBy('created', 'desc'))
+  const q = query(collection(db, "pets"), orderBy("created", "desc"));
   onSnapshot(q, (querySnapshot) => {
-    return querySnapshot.docs
-  })
-}; 
+    return querySnapshot.docs;
+  });
+};
 
 const addPet = async (p) => {
   const {
-    name, 
+    name,
     petType,
     breed,
     age,
     expOwner,
-    description
+    description,
+    isKidFriendly,
+    donationAmt,
   } = p;
   try {
     await addDoc(collection(db, "pets"), {
       name,
+      age,
       petType,
       breed,
-      age,
+      isKidFriendly,
       expOwner,
       description,
-      created: Timestamp.now()
+      donationAmt,
+      created: Timestamp.now(),
     });
   } catch (err) {
     console.error(err);
@@ -143,27 +157,31 @@ const addPet = async (p) => {
   }
 };
 
-const updatePet = async (p) => { 
+const updatePet = async (p) => {
   const {
-    name, 
+    name,
     petType,
     breed,
     age,
     expOwner,
-    description
+    description,
+    isKidFriendly,
+    donationAmt,
   } = p;
-   const petDocRef = doc(db, 'pets', p.id)
-  try{
+  const petDocRef = doc(db, "pets", p.id);
+  try {
     await updateDoc(petDocRef, {
       name,
       petType,
       breed,
       age,
       expOwner,
-      description
-    })
+      description,
+      isKidFriendly,
+      donationAmt,
+    });
   } catch (err) {
-    alert(err)
+    alert(err);
   }
 };
 
@@ -178,6 +196,5 @@ export {
   logout,
   getPets,
   addPet,
-  updatePet
+  updatePet,
 };
-

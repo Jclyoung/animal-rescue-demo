@@ -26,3 +26,27 @@
   color: #070707;
   background-color: rgb(247, 247, 247);
 }
+
+button.add-pet {
+    border-radius: 5px;
+    border: none;
+    color: #f3f3cf;
+    font-size: 1rem;
+    padding: 7px;
+    margin: 1rem 1rem 0rem 1rem;
+    background-color: #002403;
+    cursor: pointer;
+}
+
+label.filter-pets {
+  font-size: 1rem;
+  color: #002403;
+}
+
+select.filter-pets{
+  font-size: 1rem;
+  color: #002403;
+  background-color: #f3f3cf;
+  padding: 5px;
+  border-radius: 5px;
+}

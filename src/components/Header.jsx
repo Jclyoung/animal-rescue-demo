@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, db, logout } from "../firebase"
+import { auth, logout } from "../firebase"
 import { useAuthState } from "react-firebase-hooks/auth";
-import { query, collection, getDocs, where } from "firebase/firestore";
 import routes from "../routes";
 import "./Header.css";
 

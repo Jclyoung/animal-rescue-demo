@@ -1,4 +1,4 @@
-import "./PetCard.css";
+import "./petCard.css";
 
 function PetCard({ pet }) {
   if (pet.img === "") pet.img = "horse-dog-cat.png";
@@ -7,14 +7,14 @@ function PetCard({ pet }) {
     name,
     description,
     age,
-    type,
+    petType,
     created,
     donationAmt,
     expOwner,
     img,
     isKidFriendly,
   } = pet;
-  console.log("PETCARD", pet);
+
   return (
     <button className='card' onClick={() => {}}>
       <div className='card-inner'>
