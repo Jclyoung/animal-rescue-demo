@@ -14,12 +14,10 @@ import {
   addDoc,
   getDocs,
   updateDoc,
+  setDoc,
   query,
   collection,
-  onSnapshot,
-  orderBy,
   where,
-  Timestamp,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -38,19 +36,18 @@ const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-const fetchFirebaseUsers = async (uid) => {
+async function fetchFirebaseUsers(uid) {
   try {
     const q = query(collection(db, "users"), where("uid", "==", uid));
-    const doc = await getDocs(q);
-    const data = doc.docs[0].data();
+    const data = await getDocs(q).docs[0].data();
     return data.displayName;
   } catch (err) {
     console.error(err);
     alert("An error occurred while fetching user data");
   }
-};
+}
 
-const signInWithGoogle = async () => {
+async function signInWithGoogle() {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
@@ -68,18 +65,18 @@ const signInWithGoogle = async () => {
     console.error(err);
     alert(err.message);
   }
-};
+}
 
-const logInWithEmailAndPassword = async (email, password) => {
+async function logInWithEmailAndPassword(email, password) {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
-};
+}
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+async function registerWithEmailAndPassword(name, email, password) {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -93,9 +90,9 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     console.error(err);
     alert(err.message);
   }
-};
+}
 
-const sendPasswordReset = async (email) => {
+async function sendPasswordReset(email) {
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
@@ -103,34 +100,16 @@ const sendPasswordReset = async (email) => {
     console.error(err);
     alert(err.message);
   }
-};
+}
 
-const logout = () => {
-  signOut(auth);
-};
+async function logout() {
+  await signOut(auth);
+}
 
-// var tutorialsRef = firebase.firestore().collection("/tutorials");
-// tutorialsRef.get().then(function(snapshot) {
-//   vat tutorials = [];
-
-//   snapshot.forEach(function(childSnapshot) {
-//     var id = childSnapshot.id;
-//     var data = childSnapshot.val();
-//     // ...
-
-//     tutorials.push({ id: id, title: data.title, description: data.description});
-//   });
-// });
-const getPets = async () => {
-  const q = query(collection(db, "pets"), orderBy("created", "desc"));
-  onSnapshot(q, (querySnapshot) => {
-    return querySnapshot.docs;
-  });
-};
-
-const addPet = async (p) => {
+async function addPet(p) {
   const {
     name,
+    img,
     petType,
     breed,
     age,
@@ -142,6 +121,7 @@ const addPet = async (p) => {
   try {
     await addDoc(collection(db, "pets"), {
       name,
+      img,
       age,
       petType,
       breed,
@@ -149,17 +129,18 @@ const addPet = async (p) => {
       expOwner,
       description,
       donationAmt,
-      created: Timestamp.now(),
+      created: Date.now(),
     });
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
-};
+}
 
-const updatePet = async (p) => {
+async function updatePet(p) {
   const {
     name,
+    img,
     petType,
     breed,
     age,
@@ -168,22 +149,24 @@ const updatePet = async (p) => {
     isKidFriendly,
     donationAmt,
   } = p;
-  const petDocRef = doc(db, "pets", p.id);
   try {
+    const petDocRef = doc(db, "pets", p.id);
     await updateDoc(petDocRef, {
       name,
+      img,
       petType,
       breed,
       age,
       expOwner,
+      donationAmt,
       description,
       isKidFriendly,
-      donationAmt,
     });
   } catch (err) {
+    console.error(err);
     alert(err);
   }
-};
+}
 
 export {
   auth,
@@ -194,7 +177,6 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
-  getPets,
   addPet,
   updatePet,
 };

@@ -3,18 +3,18 @@ import {useState} from 'react'
 import './updatePet.css'
 import {updatePet} from '../../firebase'
 
-function UpdatePet({open, onClose, toUpdatePet}) {
+function UpdatePet({open, onClose, pet}) {
+  const [updatePetInfo, setUpdatePetInfo] = useState(pet);
 
-  const [updatePetInfo, setUpdatePetInfo] = useState(toUpdatePet);
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      await updatePet(updatePetInfo)
-      onClose()
+  async function handleUpdate() {
+    try{
+      await updatePet(pet.id);
+      onClose();
     } catch (err) {
       alert(err)
     };
   };
+
 
   function handleUpdateChange(e){
     setUpdatePetInfo({ ...updatePetInfo, [e.target.name]: e.target.value });
@@ -47,6 +47,9 @@ function UpdatePet({open, onClose, toUpdatePet}) {
           <option value="dog">Dog</option>
           <option value="cat">Cat</option>
           <option value="horse">Horse</option>
+          <option value="donkey">Donkey</option>
+          <option value="bird">Bird</option>
+          <option value="other">Other</option>
         </select>
         </section>
         <section>
@@ -69,7 +72,7 @@ function UpdatePet({open, onClose, toUpdatePet}) {
           placeholder='Enter Pet description'
           value={updatePetInfo.description}></textarea>
         <section>
-          <button>Submit Pet</button>
+          <button type='submit'>Submit Update</button>
         </section>
       </form> 
     </Modal>

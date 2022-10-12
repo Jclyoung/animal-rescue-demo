@@ -1,10 +1,14 @@
+import React, {useState} from "react";
 import "./petCard.css";
+import ViewPet from "./forms/ViewPet";
+
 
 function PetCard({ pet }) {
-  if (pet.img === "") pet.img = "horse-dog-cat.png";
+  pet.img = pet.img ? pet.img : "horse-dog-cat.png";
   const {
     id,
     name,
+    breed,
     description,
     age,
     petType,
@@ -14,9 +18,16 @@ function PetCard({ pet }) {
     img,
     isKidFriendly,
   } = pet;
+  const [open, setOpen] = useState({update: false, view: false})
+
+  function viewOnClick(){setOpen({...open, view: true})}
+  const handleClose = () => {
+    setOpen({update:false, view:false})
+  }
 
   return (
-    <button className='card' onClick={() => {}}>
+    <>
+    <button className='card' onClick={viewOnClick}>
       <div className='card-inner'>
         <div className='card-front'>
           <img src={img} alt='Pet Avatar' className='front-img' />
@@ -34,7 +45,26 @@ function PetCard({ pet }) {
         </div>
       </div>
     </button>
-  );
+
+    {open.view &&
+        <ViewPet 
+          onClose={handleClose} 
+          pet={pet}
+          open={open.view} />
+      }
+
+      {/* {open.edit &&
+        <EditTask 
+          onClose={handleClose} 
+          toEditTitle={title} 
+          toEditDescription={description} 
+          open={open.edit}
+          id={id} />
+      } */}
+    </>
+
+
+  )
 }
 
 export default PetCard;

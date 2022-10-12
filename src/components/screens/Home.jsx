@@ -1,16 +1,15 @@
 import {useState, useEffect} from "react";
 import AddPet from "../forms/AddPet";
-// import { collection, getDocs, query } from "firebase/firestore";
-// import { db } from "../../firebase";
+import { db } from "../../firebase";
+import {collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import ReactPaginate from 'react-paginate';
 import PetCard from '../PetCard';
 import "./Home.css";
-import fetchPets from "../../fakeDb/testingDb";
 import PageNotFound from "./PageNotFound";
 
 function Home() {
-  const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
   const [open, setOpen] = useState({edit: false, view: false})
   const [type, setType] = useState("");
   const [openAddModal, setOpenAddModal] = useState(false)
@@ -30,22 +29,29 @@ function Home() {
   function handlePageClick({ selected: selectedPage }){
     setCurrentPage(selectedPage);
   };
-
-  function viewOnClick(){setOpen({...open, view: true})}
-  
   
   function renderPets(p) {
     return (
       p.map((x, i )=> 
-      <PetCard key={i} pet={x} handleOnClick={viewOnClick} />
+      <PetCard key={i} pet={x} />
       ) 
-      )
-    };
+    )
+  };
     
     useEffect(() => {
-      setData(fetchPets);
-    },[]);
-
+      function getPets() {
+        const q = query(collection(db, "pets"), orderBy("created", "desc"));
+        onSnapshot(q, (snapshot) => {
+         let d = snapshot.docs.map(doc => ({
+            id: doc.id,
+            data: doc.data()
+          }))
+          console.log(d)
+        })
+      }
+      getPets();
+    },[data]);
+    
   if (data.length === 0) return <PageNotFound/>;
 
 
@@ -58,10 +64,13 @@ function Home() {
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="">All Pet Types</option>
+          <option>All Pet Types</option>
           <option value="dog">Dog</option>
           <option value="cat">Cat</option>
           <option value="horse">Horse</option>
+          <option value="donkey">Donkey</option>
+          <option value="bird">Bird</option>
+          <option value="other">Other</option>
         </select>
         <button  className="add-pet"
           onClick={() => setOpenAddModal(true)} >
@@ -71,7 +80,7 @@ function Home() {
         {type && <h2>Found {filteredPets.length} items</h2>}
        {renderPets(currentPageData)}
        {openAddModal &&
-        <AddPet onClose={() => setOpenAddModal(false)} open={openAddModal}/>
+        <AddPet onClose={() => setOpenAddModal(false)} onClick={() => setOpen({...open, view: true})} />
       }
       <div className="home">
         <ReactPaginate

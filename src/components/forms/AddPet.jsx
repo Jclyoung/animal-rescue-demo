@@ -58,6 +58,9 @@ function AddPet({onClose, open}) {
           <option value="dog">Dog</option>
           <option value="cat">Cat</option>
           <option value="horse">Horse</option>
+          <option value="donkey">Donkey</option>
+          <option value="bird">Bird</option>
+          <option value="other">Other</option>
         </select>
         </section>
         <section>
@@ -80,7 +83,7 @@ function AddPet({onClose, open}) {
           placeholder='Enter Pet description'
           value={petInfo.description}></textarea>
         <section>
-          <button>Submit Pet</button>
+          <button type='submit'>Submit Pet</button>
         </section>
       </form>
     </Modal>
