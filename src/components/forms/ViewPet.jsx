@@ -21,16 +21,16 @@ function ViewPet({onClose, pet}) {
 
   return (
     <Modal modalLabel='Pet Information' onClose={onClose} open={open}>
-      <div className='taskItem'>
+      <div className='viewPet'>
         <h2>{pet.name}</h2>
         <p>{pet.description}</p>
-        <div className='task__deleteNedit'>
+        <div className=''>
             <button 
-              className='task__editButton' 
+              className='viewPetButton' 
               onClick={() => setOpen({...open, update : true})}>
               Edit
             </button>
-            <button className='task__deleteButton' onClick={handleDelete}>Delete</button>
+            <button className='viewPetButton' onClick={handleDelete}>Delete</button>
           </div>
           {open.update &&
         <UpdatePet 

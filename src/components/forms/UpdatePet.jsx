@@ -5,6 +5,7 @@ import {updatePet} from '../../firebase'
 
 function UpdatePet({open, onClose, pet}) {
   const [updatePetInfo, setUpdatePetInfo] = useState(pet);
+  console.log(pet)
 
   async function handleUpdate() {
     try{

@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import AddPet from "../forms/AddPet";
 import { db } from "../../firebase";
-import {collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import {collection, query, onSnapshot } from "firebase/firestore";
 import ReactPaginate from 'react-paginate';
 import PetCard from '../PetCard';
 import "./Home.css";
@@ -38,20 +38,26 @@ function Home() {
     )
   };
     
-    useEffect(() => {
-      function getPets() {
-        const q = query(collection(db, "pets"), orderBy("created", "desc"));
+  async function getPets() {
+        const q = query(collection(db, "pets"));
         onSnapshot(q, (snapshot) => {
-         let d = snapshot.docs.map(doc => ({
-            id: doc.id,
-            data: doc.data()
-          }))
-          console.log(d)
+          setData(snapshot.docs.map(doc => ({
+             id: doc.id,
+             name: doc.data().name,
+      img: doc.data().img,
+      petType: doc.data().petType,
+      breed: doc.data().breed,
+      age: doc.data().age,
+      expOwner: doc.data().expOwner,
+      donationAmt: doc.data().donationAmt,
+      description: doc.data().description,
+      isKidFriendly: doc.data().isKidFriendly,
+          })));
+          console.log(data);
         })
       }
-      getPets();
-    },[data]);
     
+  getPets()
   if (data.length === 0) return <PageNotFound/>;
 
 

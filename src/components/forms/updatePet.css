@@ -1,20 +1,38 @@
 .updatePet{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
   z-index: 100;
+ justify-content: center;
+ align-items: center;
 }
 
 .updatePet input{
-  height: 40px;
+  width: 10rem;
   border: unset;
-  font-size: 18px;
+  font-size: 1rem;
   box-sizing: border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing: border-box;
   border-bottom: 1.5px solid hsl(210, 10%, 75%);
-  padding-left: 5px;
+  padding: 5px;
+}
+
+input.update-pet-radio{
+  border: unset;
+  font-size: 1rem;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  border-bottom: 1.5px solid hsl(210, 10%, 75%);
+  padding: 5px;
+  width: auto;
+}
+
+.updatePet label {
+  padding: 5px;
 }
 
 .updatePet input:focus{
@@ -22,17 +40,20 @@
 }
 
 .updatePet button {
-  height: 40px;
+  font-size: 1rem;
+  padding: 7px;
+  border-radius: 5px;
   border: none;
   color: white;
-  background-color: hsl(210, 12%, 15%);
+  background-color: #002403;
 }
 
 .updatePet textarea {
   height: 150px;
   border-color: hsl(210, 10%, 75%);
   padding: 5px;
-  font-size: 18px;
+  font-size: 1rem;
+  width: -webkit-fill-available;
 }
 
 .updatePet textarea:focus { 
@@ -40,9 +61,9 @@
 }
 
 .updatePet button:hover {
-  background-color: hsl(210, 12%, 25%);
+  background-color: #002403c9;
 }
 
 .updatePet button:active {
-  background-color: hsl(210, 12%, 15%);
+  background-color: #002403dd;
 }

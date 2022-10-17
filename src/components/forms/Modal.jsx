@@ -12,7 +12,7 @@ function Modal({open, modalLabel, children, customModal, onClose}) {
   if(open) {
     return (
       <div className='modal-container' onClick={handleClose}>
-        <section className= {`modal ${customModal}`}>
+        <section className= {`modal index ${customModal}`}>
           <div className='modal-head'>
             <h2>{modalLabel}</h2>
             <span className='modal-close' onClick={onClose}>x</span>

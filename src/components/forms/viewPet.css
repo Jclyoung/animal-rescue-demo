@@ -1,20 +1,37 @@
-.taskItem{
-  margin-top: 20px;
-  z-index: 100;
-}
-
-.taskItem h2{
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.taskItem p{ 
-
+.viewPet{
   margin-top: 10px;
-  font-size: 18px;
+}
+
+.viewPet h2{
+  font-weight: 400;
+}
+
+.viewPet p{
+  font-size: 1rem;
   max-height: 300px;
-  line-height: 25px;
+  line-height: 1.25rem;
   overflow-y: auto;
   color: hsl(210, 20%, 25%);
 }
 
+.viewPetButton {
+  font-size: 1rem;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #002403;
+  margin: 0 10px;
+};
+
+.viewPetButton textarea:focus { 
+  outline: none;
+}
+
+.viewPetButton button:hover {
+  background-color: #002403c9;
+}
+
+.viewPetButton button:active {
+  background-color: #002403dd;
+}

@@ -18,6 +18,7 @@ import {
   query,
   collection,
   where,
+  Timestamp,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -129,7 +130,7 @@ async function addPet(p) {
       expOwner,
       description,
       donationAmt,
-      created: Date.now(),
+      created: Timestamp.now(),
     });
   } catch (err) {
     console.error(err);
@@ -167,6 +168,8 @@ async function updatePet(p) {
     alert(err);
   }
 }
+
+
 
 export {
   auth,
