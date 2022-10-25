@@ -1,5 +1,6 @@
 .modal-container {
-  position: absolute;
+  position: fixed;
+  z-index: 100;
   width: 100vw; 
   height: 100%;
   display: flex;
@@ -45,6 +46,6 @@
   cursor: pointer;
 }
 
-.modal__close:hover{
+.modal-close:hover{
   color: hsl(0, 70%, 70%);
 }

@@ -14,7 +14,6 @@ import {
   addDoc,
   getDocs,
   updateDoc,
-  setDoc,
   query,
   collection,
   where,
@@ -168,8 +167,6 @@ async function updatePet(p) {
     alert(err);
   }
 }
-
-
 
 export {
   auth,

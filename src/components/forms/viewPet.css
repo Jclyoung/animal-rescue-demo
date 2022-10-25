@@ -1,5 +1,6 @@
 .viewPet{
   margin-top: 10px;
+  position: relative;
 }
 
 .viewPet h2{
