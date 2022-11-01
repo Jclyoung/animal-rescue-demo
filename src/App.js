@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Header></Header>
+        <Header />
         <Routes>
           {routes
             .filter((r) => r.isNav)

@@ -20,8 +20,6 @@ export const bulkUpdate = async () => {
         updated++;
 
         batch.update(queryResult.ref, {
-          // getTime() returns milliseconds
-          // We convert to seconds and remove any fractional part
           img: "",
         });
       }
