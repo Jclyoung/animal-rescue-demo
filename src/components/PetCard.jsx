@@ -48,9 +48,7 @@ function PetCard({ pet }) {
         </div>
       </button>
 
-      {open.view && (
-        <ViewPet onClose={handleClose} pet={pet} open={open} />
-      )}
+      {open.view && <ViewPet onClose={handleClose} pet={pet} open={open} />}
     </>
   );
 }
