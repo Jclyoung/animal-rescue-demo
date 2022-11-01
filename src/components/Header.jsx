@@ -41,8 +41,7 @@ function Header() {
             ))}
           {user && (
             <Link className='routes' key='logout' to='/' onClick={logout}>
-              {" "}
-              Logout{" "}
+              Logout
             </Link>
           )}
         </div>
