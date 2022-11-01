@@ -10,14 +10,14 @@ function Home() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [type, setType] = useState("");
+  const [petType, setPetType] = useState("");
   const [openAddModal, setOpenAddModal] = useState(false);
   const perPage = 9;
   const offset = currentPage * perPage;
   const pageCount = Math.ceil(data.length / perPage);
 
   const filteredPets =
-    type !== "" ? data.filter((d) => d.petType === type) : data;
+    petType !== "" ? data.filter((d) => d.petType === petType) : data;
 
   const currentPageData = filteredPets.slice(offset, offset + perPage);
 
@@ -64,14 +64,14 @@ function Home() {
   return (
     <>
       {console.log(data)}
-      <label className='filter-pets' for='type'>
+      <label className='filter-pets' for='petType'>
         Filter by Type:
-      </label>{" "}
+      </label>
       <select
         className='filter-pets'
-        id='type'
-        value={type}
-        onChange={(e) => setType(e.target.value)}
+        id='petType'
+        value={petType}
+        onChange={(e) => setPetType(e.target.value)}
       >
         <option>All Pet Types</option>
         <option value='dog'>Dog</option>
@@ -85,7 +85,7 @@ function Home() {
         Add Pet +
       </button>
       <div className='home-container'>
-        {type && <h2>Found {filteredPets.length} items</h2>}
+        {petType && <h2>Found {filteredPets.length} items</h2>}
         {renderPets(currentPageData)}
         {openAddModal && (
           <AddPet onClose={() => setOpenAddModal(false)} open={openAddModal} />
