@@ -30,7 +30,7 @@ function Header() {
         <Link className='logo' to='/'>
           <img src='new-site-icon.png' alt='horse dog cat' className='logo' />
         </Link>
-        <h1>Serenity Farms</h1>
+        <h1>Animal Rescue Demo</h1>
         <div className='header-right'>
           {routes
             .filter((r) => r.isUser === isLoggedIn && r.isNav)

@@ -65,7 +65,7 @@ function Home() {
     <>
       {console.log(data)}
       <label className='filter-pets' for='petType'>
-        Filter by Type:
+        Filter by Type: 
       </label>
       <select
         className='filter-pets'
@@ -73,7 +73,7 @@ function Home() {
         value={petType}
         onChange={(e) => setPetType(e.target.value)}
       >
-        <option>All Pet Types</option>
+        <option value=''>All Pet Types</option>
         <option value='dog'>Dog</option>
         <option value='cat'>Cat</option>
         <option value='horse'>Horse</option>

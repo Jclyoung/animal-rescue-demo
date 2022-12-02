@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./petCard.css";
+import "./PetCard.css";
 import ViewPet from "./forms/ViewPet";
 
 function PetCard({ pet }) {
@@ -34,8 +34,8 @@ function PetCard({ pet }) {
           <div className='card-front'>
             <img src={img} alt='Pet Avatar' className='front-img' />
             <h1>{name}</h1>
-            <p>Description</p>
-            <p>{description}</p>
+            <h2>Description</h2>
+            <p className="front-description">{description}</p>
           </div>
           <div className='card-back'>
             <img src={img} alt='Avatar' className='back-img' />
@@ -48,9 +48,7 @@ function PetCard({ pet }) {
         </div>
       </button>
 
-      {open.view && (
-        <ViewPet onClose={handleClose} pet={pet} open={open} />
-      )}
+      {open.view && <ViewPet onClose={handleClose} pet={pet} open={open} />}
     </>
   );
 }

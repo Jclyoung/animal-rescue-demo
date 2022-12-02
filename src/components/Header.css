@@ -12,6 +12,11 @@
   
 }
 
+h1 {
+  font-size: 2.5rem;
+
+}
+
 .row:after {
   content: "";
   display: table;
@@ -41,7 +46,6 @@
   color: #f3f3cf;
 }
 
-/* Style the active/current link*/
 .header .active{
   background-color: #f3f3cf;
   color: #002403;
@@ -60,7 +64,6 @@
   align-self: center;
 }
 
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
   .header .routes{
     float: none;

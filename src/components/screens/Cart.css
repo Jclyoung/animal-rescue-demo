@@ -5,7 +5,6 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  
 }
 
 .flexParent > div {
@@ -14,6 +13,24 @@
   border: 1px solid #002403;;
   margin: 10px;
   border-radius: 15px 50px;
+  padding: 1rem;
+}
+
+.donation-qty {
+  width: 2rem;
+  background-color: #f3f3cf;
+  border-radius: 5px;
+}
+
+
+
+.donation-button {
+  width: 2rem;
+  background-color:#002403;
+  color: #f3f3cf;
+  border-radius: 5px;
+  margin: .5rem;
+
 }
 /* input {
   width: 50px;

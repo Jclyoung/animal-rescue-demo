@@ -6,6 +6,21 @@
   padding-bottom: -1rem;
 }
 
+h2 {
+  margin: 5px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+}
+
+.front-description {
+  width: 85%;
+  height: 40px;
+  padding: 5%;
+  padding-top: 0;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
 
 .card-inner {
   position: relative;
@@ -49,7 +64,7 @@
 
 
 .card-front img {
-  width: 225px;
+  width: 200px;
   border-radius: 15px 50px;
   
 }

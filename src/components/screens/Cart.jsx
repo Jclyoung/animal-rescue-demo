@@ -1,60 +1,57 @@
 import React, { useState } from "react";
-import "./Cart.css"
+import "./Cart.css";
 
 const API = [
   {
     name: "$5.00 Donation",
-    price: 5.00,
+    price: 5.0,
     count: 0,
     counterVal: 1,
-    inCart: false
+    inCart: false,
   },
   {
     name: "$10.00 Donation",
-    price: 10.00,
+    price: 10.0,
     count: 0,
     counterVal: 1,
-    inCart: false
+    inCart: false,
   },
   {
     name: "$15.00 Donation",
-    price: 15.00,
+    price: 15.0,
     count: 0,
     counterVal: 1,
-    inCart: false
+    inCart: false,
   },
   {
     name: "$20.00 Donation",
-    price: 20.00,
+    price: 20.0,
     count: 0,
     counterVal: 1,
-    inCart: false
-  }
+    inCart: false,
+  },
 ];
-
-
-
 
 function Cart() {
   const [cart, setCart] = useState(API);
-  
-  const addToCart = i => {
-    setCart(prevState =>
+
+  const addToCart = (i) => {
+    setCart((prevState) =>
       prevState.map((item, o) => {
         if (i === o) {
           return {
             ...item,
             inCart: true,
-            count: item.counterVal
+            count: item.counterVal,
           };
         }
         return item;
       })
     );
   };
-  
-  const increaseQuantity = i => {
-    setCart(prevCart =>
+
+  const increaseQuantity = (i) => {
+    setCart((prevCart) =>
       prevCart.map((item, o) => {
         if (i === o && item.inCart) {
           if (item.count > 9) {
@@ -66,16 +63,16 @@ function Cart() {
           } else
             return {
               ...item,
-              counterVal: item.counterVal + 1
+              counterVal: item.counterVal + 1,
             };
         }
         return item;
       })
     );
   };
-  
-  const decreaseQuantity = i => {
-    setCart(prevCart =>
+
+  const decreaseQuantity = (i) => {
+    setCart((prevCart) =>
       prevCart.map((item, o) => {
         if (i === o && item.inCart) {
           if (item.count > 1) {
@@ -86,36 +83,36 @@ function Cart() {
         } else if (i === o && item.counterVal > 1) {
           return {
             ...item,
-            counterVal: item.counterVal - 1
+            counterVal: item.counterVal - 1,
           };
         }
         return item;
       })
     );
   };
-  
-  const removeFromCart = i => {
-    setCart(prevCart =>
+
+  const removeFromCart = (i) => {
+    setCart((prevCart) =>
       prevCart.map((item, o) => {
         if (i === o) {
           return {
             ...item,
             count: 0,
             counterVal: 1,
-            inCart: false
+            inCart: false,
           };
         }
         return item;
       })
     );
   };
-  
+
   const cartCountTotal = cart.reduce((acc, item) => acc + item.count, 0);
   const cartPriceTotal = cart.reduce(
     (acc, item) => acc + item.price * item.count,
     0
   );
-  
+
   const cartTotals = () =>
     cartCountTotal === 0 ? (
       <b>Cart is empty</b>
@@ -132,13 +129,13 @@ function Cart() {
         </b>
       </>
     );
-  
+
   const cartItems = cart.map((item, i) => (
     <React.Fragment key={item.name}>
       {item.inCart && (
         <>
           <p> Item Name: {item.name}</p>
-          <p>
+          <p className='increment-button'>
             Item Count: <button onClick={() => decreaseQuantity(i)}>-</button>{" "}
             {item.count} <button onClick={() => increaseQuantity(i)}>+</button>
           </p>
@@ -154,18 +151,28 @@ function Cart() {
       )}
     </React.Fragment>
   ));
-  
+
   const cartProducts = () => (
-    <div className="flexParent">
+    <div className='flexParent'>
       {cart.map((item, i) => (
         <div key={item.name}>
           <p>{item.name}</p>
           <p>Price: ${item.price}</p>
           {!item.inCart ? (
             <>
-              <button onClick={() => decreaseQuantity(i)}>-</button>
-              <input readOnly type="text" value={item.counterVal} />
-              <button onClick={() => increaseQuantity(i)}>+</button>
+              <button
+                className='donation-button'
+                onClick={() => decreaseQuantity(i)}
+              >
+                -
+              </button>
+              <input className="donation-qty"readOnly type='text' value={item.counterVal} />
+              <button
+                className='donation-button'
+                onClick={() => increaseQuantity(i)}
+              >
+                +
+              </button>
               <br />
               <button onClick={() => addToCart(i)}>add</button>
             </>
@@ -178,7 +185,7 @@ function Cart() {
       ))}
     </div>
   );
-  return(
+  return (
     <div className='cart-donation'>
       <h1>Your Selected Donations</h1>
       {cartItems}
@@ -186,6 +193,6 @@ function Cart() {
       {cartProducts()}
     </div>
   );
-};
+}
 
 export default Cart;
